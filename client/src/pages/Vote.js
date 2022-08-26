@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getMatchup, createVote } from '../utils/api';
+import NotFound from './NotFound';
 
 const Vote = () => {
   const [matchup, setMatchup] = useState({});
+  const [err, setErr] = useState("");
   let { id } = useParams();
 
   useEffect(() => {
     const getMatchupInfo = async () => {
       try {
         const res = await getMatchup(id);
+
         if (!res.ok) {
+          setErr("No matchup found");
+          // return (<NotFound />)
           throw new Error('No matchup');
         }
         const matchup = await res.json();
@@ -38,7 +43,8 @@ const Vote = () => {
     }
   };
 
-  return (
+  return (err ? <NotFound /> : 
+  ( 
     <div className="card bg-white card-rounded w-50">
       <div className="card-header bg-dark text-center">
         <h1>Here is the matchup!</h1>
@@ -64,7 +70,7 @@ const Vote = () => {
         </div>
       </div>
     </div>
-  );
+  ))
 };
 
 export default Vote;

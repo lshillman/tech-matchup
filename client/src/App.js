@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Matchup from './pages/Matchup';
 import Vote from './pages/Vote';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             path="/matchup/:id" 
             element={<Vote />} 
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
