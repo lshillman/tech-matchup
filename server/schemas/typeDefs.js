@@ -11,8 +11,8 @@ const typeDefs = gql`
     _id: ID
     tech1: String
     tech2: String
-    tech1_votes: Number
-    tech2_votes: Number
+    tech1_votes: Int
+    tech2_votes: Int
   }
 
   # Define which queries the front end is allowed to make and what data is returned
